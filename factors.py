@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+import sys
+
+def factorize_number(number):
+    factors = []
+    for i in range(2, number):
+        if number % i == 0:
+            factors.append((i, number // i))
+            break
+    return factors
+
+def factorize_file(filename):
+    with open(filename, 'r') as file:
+        for line in file:
+            number = int(line)
+            factors = factorize_number(number)
+            for factor in factors:
+                print(f"{number}={factor[0]}*{factor[1]}")
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: factors <file>")
+    else:
+        factorize_file(sys.argv[1])
+
+if __name__ == '__main__':
+    main()
